@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>asb photography</title>
+  <meta name="description" content="asb photography: couples, maternity, family and scenery photography.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+{{HEADER home}}
+  <main>
+    <h1 class="display display-home"><span class="line">asb</span> <span class="line">photography</span></h1>
+
+    <section class="hero" aria-label="Introduction">
+      <a class="hero-photo hero-left" href="portfolio.html"><img src="images/site/landing-left.jpg" alt="Photograph by asb photography"></a>
+      <div class="hero-intro">
+        <p class="tagline">Documenting authentic love and beauty on 35mm, <em>with a focus on couples, maternity, family and scenery</em></p>
+        <div class="hero-actions">
+          <a class="button" href="#inquire">Inquire</a>
+          <a class="text-link" href="portfolio.html">View the portfolio</a>
+        </div>
+      </div>
+      <a class="hero-photo hero-right" href="couples.html"><img src="images/site/landing-right.jpg" alt="Photograph by asb photography"></a>
+    </section>
+
+    <section class="more" aria-label="More photographs">
+      <a class="hero-photo more-left" href="scenery.html"><img src="images/site/below-left.jpg" alt="Photograph by asb photography" loading="lazy"></a>
+      <a class="hero-photo more-right" href="portraits.html"><img src="images/site/below-right.jpg" alt="Photograph by asb photography" loading="lazy"></a>
+    </section>
+
+    <section class="selected" aria-labelledby="selected-label">
+      <p class="section-label" id="selected-label">Selected work</p>
+      <div class="selected-grid">
+{{SELECTED_WORK}}
+      </div>
+    </section>
+
+    <section class="inquire" id="inquire" aria-labelledby="inquire-title">
+      <h2 class="inquire-title" id="inquire-title">Inquire below</h2>
+      <p class="inquire-intro">Tell me a little about what you have in mind and I&rsquo;ll be in touch.</p>
+      <!-- Inquiries are delivered by FormSubmit. Replace the email in the action with hers. -->
+      <form class="inquiry" action="https://formsubmit.co/YOUR-EMAIL@example.com" method="POST">
+      <input type="hidden" name="_subject" value="Photo Shoot Inquiry">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="field">
+          <label class="label" for="capture">What would you like to capture?</label>
+          <select id="capture" name="What to capture" required>
+            <option value="" disabled selected>Choose one</option>
+            <option>Couples</option>
+            <option>Maternity</option>
+            <option>Family</option>
+            <option>Portraits</option>
+            <option>An event</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="label" for="h-email">Email</label>
+          <input id="h-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+          <label class="label" for="h-desc">Description</label>
+          <textarea id="h-desc" name="Description" placeholder="Dates, location, the feeling you're after…" required></textarea>
+        </div>
+      <div class="form-actions">
+        <button class="button" type="submit">Send Inquiry</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+        <p class="form-note">Your details are only used to reply to you.</p>
+      </div>
+      </form>
+    </section>
+  </main>
+{{FOOTER}}
+  <script src="js/main.js"></script>
+</body>
+</html>

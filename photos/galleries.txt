@@ -1,0 +1,9 @@
+# One gallery per line, in the order they appear on the site.
+# Format:   folder-name: Title shown on the site
+# The folder-name must match a folder inside "photos".
+# To hide a gallery, delete its line (or put # in front of it).
+
+portraits: Portraits
+couples: Couples
+events: Events
+scenery: Scenery

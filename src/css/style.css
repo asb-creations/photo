@@ -1,0 +1,529 @@
+/* =========================================================
+   ASB Photography — site styles (editorial version)
+   The main colors, fonts and sizes are variables in :root.
+   Change them there to restyle the whole site.
+   ========================================================= */
+
+:root {
+  --display: "Cormorant Garamond", "Cormorant", Garamond, Georgia, serif; /* giant titles */
+  --serif: "EB Garamond", Garamond, Georgia, serif;                      /* everything else */
+
+  --bg: #ffffff;
+  --ink: #111111;
+  --muted: #6b6b6b;
+  --line: #d6d6d6;          /* thin borders */
+
+  --track: 0.18em;          /* letter spacing for small italic text */
+  --side: 40px;             /* page margin left/right */
+  --gap: 24px;              /* gap between grid columns */
+  --drop: clamp(40px, 9vw, 150px); /* how far staggered photos drop */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+
+/* Small, widely spaced italic text used for nav, labels, captions */
+.small-caps-italic,
+.nav a,
+.label,
+.caption,
+.eyebrow {
+  font-style: italic;
+  letter-spacing: var(--track);
+  font-size: 16px;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 20px var(--side);
+}
+.wordmark {
+  justify-self: start;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 24px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.nav {
+  grid-column: 2;
+  display: flex;
+  gap: 40px;
+}
+.nav a {
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.nav a:hover,
+.nav a[aria-current="page"] { border-bottom-color: currentColor; }
+
+/* ---------- Giant titles ---------- */
+.display {
+  position: relative;
+  z-index: 2;              /* sits on top of photos that tuck underneath */
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.015em;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.display-home { font-size: clamp(60px, 12.6vw, 250px); margin-top: 0.12em; }
+.display-page { font-size: clamp(64px, 11vw, 200px); margin: 0.18em 0 0.28em; }
+.display .line { display: inline; }
+
+.subtitle {
+  text-align: center;
+  font-style: italic;
+  letter-spacing: var(--track);
+  font-size: 17px;
+  margin: -0.6em auto 0;
+  padding: 0 20px;
+  color: var(--muted);
+}
+.subtitle a { border-bottom: 1px solid var(--line); }
+.subtitle a:hover { border-bottom-color: currentColor; }
+
+/* ---------- Buttons ---------- */
+.button {
+  display: inline-block;
+  background: var(--ink);
+  color: #fff;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  padding: 14px 40px;
+  min-height: 52px;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.button:hover { background: #fff; color: var(--ink); }
+.button:disabled { opacity: 0.6; cursor: wait; }
+
+.text-link {
+  display: inline-block;
+  padding: 10px 0 3px;
+  font-style: italic;
+  letter-spacing: var(--track);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+}
+.text-link:hover { border-bottom-color: currentColor; }
+
+/* ---------- Landing page ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  align-items: start;
+  padding-left: var(--side);   /* no right padding: right photo runs off the edge */
+}
+.hero-photo { display: block; position: relative; z-index: 1; }
+/* Each landing photo spot has a fixed shape. Any photo dropped in is
+   cropped from the center to fit, so vertical/horizontal always holds. */
+.hero-photo img { width: 100%; height: auto; object-fit: cover; object-position: center; }
+.hero-left img, .more-left img   { aspect-ratio: 2 / 3; }   /* vertical */
+.hero-right img, .more-right img { aspect-ratio: 3 / 2; }   /* horizontal */
+
+.hero-left  { grid-column: 2 / span 3; grid-row: 1; margin-top: -3.4vw; }
+.hero-right { grid-column: 9 / -1; grid-row: 1; margin-top: 7vw; }  /* runs off the right edge */
+
+/* Two more photos, staggered, below the first screen */
+.more {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  align-items: start;
+  padding: clamp(70px, 8vw, 130px) var(--side) 0;
+}
+.more-left  { grid-column: 3 / span 3; }
+.more-right { grid-column: 7 / span 5; margin-top: 12vw; }
+
+.hero-intro {
+  grid-column: 5 / span 4;
+  grid-row: 1;
+  text-align: center;
+  padding-top: 9vw;
+}
+.tagline {
+  font-size: 23px;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  margin: 0 0 2.4em;
+}
+.tagline em { letter-spacing: 0.1em; }
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.section-label {
+  text-align: center;
+  font-style: italic;
+  letter-spacing: var(--track);
+  font-size: 17px;
+  margin: 0 0 36px;
+}
+
+.selected {
+  padding: clamp(90px, 10vw, 150px) var(--side) 0;
+}
+.selected-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  align-items: start;
+}
+.tile { display: block; }
+.tile img { width: 100%; transition: opacity 0.2s; }
+.tile:hover img { opacity: 0.85; }
+.tile .caption { display: block; margin-top: 12px; }
+/* Tiles and portfolio cards: 4 per row on wide screens, each one
+   dropped to a different height. Works for any number of galleries. */
+.tile,
+.category { grid-column: span 3; }
+.tile:nth-child(4n+2), .category:nth-child(4n+2) { margin-top: var(--drop); }
+.tile:nth-child(4n+3), .category:nth-child(4n+3) { margin-top: calc(var(--drop) * 0.35); }
+.tile:nth-child(4n+4), .category:nth-child(4n+4) { margin-top: calc(var(--drop) * 0.75); }
+.selected-grid > *, .categories > * { margin-bottom: 60px; }
+
+/* ---------- Inquiry + contact forms ---------- */
+.inquire {
+  padding: clamp(90px, 11vw, 170px) 20px 0;
+  scroll-margin-top: 20px;
+}
+.inquire-title {
+  margin: 0;
+  text-align: center;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(44px, 6vw, 88px);
+  line-height: 1;
+}
+.inquire-intro {
+  text-align: center;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 14px auto 44px;
+  max-width: 34em;
+}
+
+.inquiry {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.field { margin-bottom: 26px; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.label { display: block; margin-bottom: 8px; }
+.field input,
+.field select,
+.field textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: #fff;
+  color: var(--ink);
+  font: 18px/1.4 var(--serif);   /* 16px or more stops phones zooming in */
+  letter-spacing: 0.04em;
+  padding: 13px 16px;
+  min-height: 52px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.field select {
+  padding-right: 44px;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%23111' stroke-width='1.3'/%3E%3C/svg%3E") no-repeat right 18px center;
+}
+.field textarea { min-height: 170px; resize: vertical; }
+.field input::placeholder,
+.field textarea::placeholder { color: #a5a5a5; font-style: italic; }
+.field input:focus,
+.field select:focus,
+.field textarea:focus { outline: none; border-color: var(--ink); }
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 36px;
+}
+.form-note {
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+.form-status { margin: 0; min-height: 1.6em; text-align: center; font-style: italic; }
+.form-status.error { color: #a40000; }
+.hp { position: absolute; left: -9999px; }
+
+/* ---------- Portfolio (category cards) ---------- */
+.categories {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  align-items: start;
+  padding: 0 var(--side);
+}
+.category { display: block; }
+.category img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; transition: opacity 0.2s; }
+.category:hover img { opacity: 0.85; }
+.category h2 {
+  margin: 16px 0 2px;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(28px, 2.6vw, 38px);
+  line-height: 1.1;
+}
+
+/* ---------- Staggered galleries ----------
+   Each <div class="spread"> holds one or two photos.
+   Give each photo the class "l" (landscape) or "p" (portrait);
+   --r is its width ÷ height. Spreads alternate left/right and
+   the photos drop to different heights automatically. */
+.gallery {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--side);
+}
+.spread {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  align-items: start;
+  margin-bottom: clamp(40px, 7vw, 110px);
+}
+.photo { --span: 6; display: block; aspect-ratio: var(--r); overflow: hidden; background: #f2f2f2; cursor: zoom-in; }
+.photo.p { --span: 4; }
+.spread:has(.l + .l) .l { --span: 5; }
+.photo img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.2s; }
+.photo:hover img { opacity: 0.88; }
+.photo:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+.spread:nth-child(odd)  > .photo:first-child { grid-column: 1 / span var(--span); }
+.spread:nth-child(odd)  > .photo:last-child  { grid-column: span var(--span) / -1; margin-top: var(--drop); }
+.spread:nth-child(even) > .photo:first-child { grid-column: 2 / span var(--span); margin-top: var(--drop); }
+.spread:nth-child(even) > .photo:last-child  { grid-column: span var(--span) / -2; margin-top: 0; }
+.spread > .photo:only-child { grid-column: 4 / span 6; margin-top: 0; }
+.spread > .photo.p:only-child { grid-column: 5 / span 4; }
+
+/* ---------- About ---------- */
+.about {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  align-items: start;
+  padding: 0 var(--side);
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.about-photo { grid-column: 2 / span 4; width: 100%; }
+.about-text {
+  grid-column: 7 / span 5;
+  margin-top: 8vw;
+  font-size: 21px;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+.about-text p { margin: 0 0 1.2em; }
+.about-text .button { margin-top: 1em; }
+
+/* ---------- Contact page ---------- */
+.contact-page { padding: 0 20px; }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  margin-top: clamp(90px, 10vw, 160px);
+  border-top: 1px solid var(--line);
+  padding: 34px var(--side) 40px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 20px;
+}
+.site-footer .nav { gap: 32px; }
+.site-footer .copyright {
+  justify-self: end;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+/* ---------- Enlarged photo (lightbox) ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.96);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 90px 24px 40px;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: min(92vw, 1500px);
+  max-height: calc(100vh - 140px);
+  max-height: calc(100dvh - 140px);
+  width: auto;
+  height: auto;
+}
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  width: 52px;
+  height: 52px;
+  padding: 10px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.lightbox-close svg { width: 100%; height: 100%; }
+.lightbox-close:hover { opacity: 0.6; }
+.lightbox-count {
+  position: absolute;
+  top: 36px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-style: italic;
+  letter-spacing: var(--track);
+  font-size: 15px;
+  color: var(--muted);
+  pointer-events: none;
+}
+body.no-scroll { overflow: hidden; }
+
+/* =========================================================
+   Tablets
+   ========================================================= */
+@media (max-width: 1000px) {
+  :root { --side: 28px; --gap: 18px; }
+  .hero-intro { grid-column: 5 / span 4; }
+  .tagline { font-size: 20px; }
+  .category h2 { font-size: 30px; }
+  /* 2 per row on tablets */
+  .tile, .category { grid-column: span 6; margin-top: 0 !important; }
+  .tile:nth-child(even), .category:nth-child(even) { margin-top: var(--drop) !important; }
+  .about-text { font-size: 19px; }
+}
+
+/* =========================================================
+   Phones
+   ========================================================= */
+@media (max-width: 700px) {
+  :root { --side: 18px; --gap: 14px; --track: 0.14em; }
+  body { font-size: 17px; }
+
+  /* Header: wordmark on top, nav underneath, both centered */
+  .site-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 14px var(--side) 6px;
+  }
+  .wordmark { justify-self: auto; font-size: 22px; padding: 6px 0; }
+  .nav { gap: 26px; }
+  .nav a { padding: 10px 2px; }          /* bigger tap targets */
+
+  /* Giant titles */
+  .display-home { font-size: 19.5vw; margin-top: 0.2em; line-height: 0.88; }
+  .display-home .line { display: block; }
+  .display-page { font-size: clamp(54px, 17vw, 96px); }
+
+  /* Landing hero: two photos side by side, text below */
+  .hero {
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--gap);
+    padding-left: var(--side);
+  }
+  .hero-left  { grid-column: 1; grid-row: 1; margin-top: -5vw; }
+  .hero-right { grid-column: 2; grid-row: 1; margin-top: 30vw; }
+  .hero-intro { grid-column: 1 / -1; grid-row: 2; padding: 44px var(--side) 0 0; }
+  .more { display: block; padding-top: 60px; }
+  .more-left  { width: 70%; }
+  .more-right { width: 88%; margin: 24px 0 0 auto; }
+  .tagline { font-size: 19px; letter-spacing: 0.08em; margin-bottom: 1.8em; }
+
+  /* Everything that was a 12-column stagger becomes a simple
+     one-column stagger: photos alternate left and right */
+  .selected-grid,
+  .categories,
+  .about { display: block; }
+  .tile,
+  .category { width: 84%; margin: 0 0 44px !important; }
+  .tile:nth-child(even),
+  .category:nth-child(even) { margin-left: auto !important; margin-top: 0 !important; }
+  .category h2 { font-size: 30px; margin-top: 10px; }
+
+  .gallery { padding: 0 var(--side); }
+  .spread { display: block; margin: 0; }
+  .photo { width: 90% !important; margin: 0 0 var(--gap) !important; }
+  .photo.p { width: 76% !important; }
+  .spread:nth-child(odd) > .photo:nth-child(2),
+  .spread:nth-child(even) > .photo:nth-child(1) { margin-left: auto !important; }
+
+  .about-photo { width: 78%; margin: 0 auto; }
+  .about-text { margin-top: 36px; font-size: 18px; }
+
+  /* Forms */
+  .inquire { padding-left: var(--side); padding-right: var(--side); }
+  .field-row { grid-template-columns: 1fr; gap: 0; }
+  .button { width: 100%; }
+
+  /* Footer */
+  .site-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+    padding-bottom: calc(30px + env(safe-area-inset-bottom));
+  }
+  .site-footer .copyright { justify-self: auto; margin-top: 6px; }
+
+  /* Lightbox */
+  .lightbox { padding: 70px 10px 24px; background: #fff; }
+  .lightbox img { max-width: 100%; max-height: calc(100dvh - 110px); }
+  .lightbox-close { top: 10px; right: 8px; }
+  .lightbox-count { top: 26px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Space between the "← Portfolio" link and a gallery's photos */
+.subtitle + .gallery { margin-top: clamp(36px, 5vw, 70px); }
