@@ -148,7 +148,7 @@ a { color: inherit; text-decoration: none; }
 .hero-left img, .more-left img   { aspect-ratio: 2 / 3; }   /* vertical */
 .hero-right img, .more-right img { aspect-ratio: 3 / 2; }   /* horizontal */
 
-.hero-left  { grid-column: 2 / span 3; grid-row: 1; margin-top: -1vw; }
+.hero-left  { grid-column: 2 / span 3; grid-row: 1; margin-top: -.25vw; }
 .hero-right { grid-column: 9 / -1; grid-row: 1; margin-top: 7vw; }  /* runs off the right edge */
 
 /* Two more photos, staggered, below the first screen */
