@@ -159,8 +159,8 @@ a { color: inherit; text-decoration: none; }
   align-items: start;
   padding: clamp(70px, 8vw, 130px) var(--side) 0;
 }
-.more-left  { grid-column: 8 / span 3; }
-.more-right { grid-column: 2 / span 5; margin-top: 12vw; }}
+.more-left  { grid-column: 3 / span 3; }
+.more-right { grid-column: 7 / span 5; margin-top: 12vw; }
 
 .hero-intro {
   grid-column: 5 / span 4;
