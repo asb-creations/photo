@@ -4,6 +4,6 @@
 # To hide a gallery, delete its line (or put # in front of it).
 
 portraits: Portraits
-couples: Couples
+couples: Duos
 events: Events
 scenery: Scenery
