@@ -470,7 +470,7 @@ body.no-scroll { overflow: hidden; }
     column-gap: var(--gap);
     padding-left: var(--side);
   }
-  .hero-left  { grid-column: 1; grid-row: 1; margin-top: -5vw; }
+  .hero-left  { grid-column: 1; grid-row: 1; margin-top: -2vw; }
   .hero-right { grid-column: 2; grid-row: 1; margin-top: 30vw; }
 .hero-left img { aspect-ratio: 4 / 5; }
   .hero-intro { grid-column: 1 / -1; grid-row: 2; padding: 44px var(--side) 0 0; }
